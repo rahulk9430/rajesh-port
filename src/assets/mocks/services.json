@@ -1,0 +1,56 @@
+[
+  {
+    "id": "payroll",
+    "title": "End-to-End Payroll Processing",
+    "short": "Monthly & annual payroll processing for organisations, tax calculations and payslip generation.",
+    "details": "Complete payroll cycle: attendance handling, salary calculation, TDS, reimbursements, adjustments and payroll reconciliation. Works across multiple states with multi-company support.",
+    "icon": "🧾",
+    "ctaLabel": "Request Payroll",
+    "tags": ["Payroll", "Salary", "Reconciliation"]
+  },
+  {
+    "id": "statutory",
+    "title": "Statutory Compliance & Filings",
+    "short": "PF, ESIC, Bonus, Gratuity, LWF filings and statutory record maintenance.",
+    "details": "Registration, periodic returns, audits, and coordination with EPFO/ESIC/NPS portals. Ensure 100% compliance and audit-ready documentation.",
+    "icon": "✅",
+    "ctaLabel": "Get Compliance Help",
+    "tags": ["PF", "ESIC", "Bonus"]
+  },
+  {
+    "id": "automation",
+    "title": "Payroll Automation & Reporting",
+    "short": "Automation of repetitive payroll tasks using Excel VBA & Power Automate, plus dashboards.",
+    "details": "Build macros, automated flows, and reporting templates to reduce manual work and errors. Deliver Excel dashboards and scheduled reports.",
+    "icon": "🤖",
+    "ctaLabel": "Automate Payroll",
+    "tags": ["VBA", "Power Automate", "Dashboards"]
+  },
+  {
+    "id": "audits",
+    "title": "Vendor & Statutory Audits",
+    "short": "Prepare for and assist with vendor audits, statutory audits and labour inspections.",
+    "details": "Support during audits, prepare documents, reconcile findings and implement corrective actions to remain compliant with CLRA, Maternity Act and Shop & Establishment rules.",
+    "icon": "🧰",
+    "ctaLabel": "Audit Support",
+    "tags": ["Audits", "CLRA", "Maternity Act"]
+  },
+  {
+    "id": "benefits",
+    "title": "Employee Benefits & Gratuity",
+    "short": "Manage employee benefits: food coupons, gratuity, leave encashment and vendor coordination.",
+    "details": "Design and administer benefit programs, vendor handling for food coupons, claim processing, and gratuity administration.",
+    "icon": "🎁",
+    "ctaLabel": "Benefits Support",
+    "tags": ["Benefits", "Gratuity", "Food Coupons"]
+  },
+  {
+    "id": "portals",
+    "title": "Portal Expertise (EPFO, NPS, Ascent)",
+    "short": "Hands-on experience with EPFO, ESIC, NPS CRA and Ascent payroll portal operations.",
+    "details": "Portal-based registrations, eKYC, contribution reconciliation and troubleshooting for portal-based filings.",
+    "icon": "🌐",
+    "ctaLabel": "Portal Help",
+    "tags": ["EPFO", "NPS", "Ascent"]
+  }
+]

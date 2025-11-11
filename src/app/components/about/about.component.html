@@ -1,0 +1,86 @@
+<section class="about-page" *ngIf="!loading; else loadingTpl">
+  <div class="about-wrap">
+    <header class="about-header">
+      <div class="intro">
+        <h1 class="title">{{ about?.title ?? 'Payroll & Compliance Specialist' }}</h1>
+        <p class="subtitle">{{ about?.summary }}</p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="/assets/resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+          <a class="btn btn-outline" routerLink="/contact">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="portrait" aria-hidden="true">
+        <!-- replace with real image later -->
+        <div class="photo-placeholder">RK</div>
+      </div>
+    </header>
+
+    <section class="metrics" aria-label="Professional highlights">
+      <div class="metrics-grid">
+        <article class="metric" *ngFor="let m of metrics">
+          <div class="metric-value">{{ m.value }}</div>
+          <div class="metric-label">{{ m.label }}</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="details">
+      <div class="left">
+        <h2>What I do</h2>
+        <p *ngIf="about?.highlights?.length; else defaultHighlights">
+          <ul class="highlights">
+            <li *ngFor="let h of about?.highlights">{{ h }}</li>
+          </ul>
+        <ng-template #defaultHighlights>
+          <p>I manage end-to-end payroll operations, statutory filings across multiple states, and automate payroll processes to reduce manual effort and errors.</p>
+        </ng-template>
+
+        <h3>Key Responsibilities</h3>
+        <ul class="responsibilities">
+          <li>End-to-end payroll processing (monthly/annual)</li>
+          <li>Statutory filings: PF, ESIC, Bonus, Gratuity, LWF</li>
+          <li>Coordination with government authorities and vendors</li>
+          <li>Payroll automation & reconciliation using Excel VBA & Power Automate</li>
+        </ul>
+      </div>
+
+      <aside class="right">
+        <h3>Skills & Tools</h3>
+
+        <div class="skill-group">
+          <strong>Payroll & Compliance</strong>
+          <p class="chips">
+            <span *ngFor="let s of skills.payroll" class="chip">{{ s }}</span>
+          </p>
+        </div>
+
+        <div class="skill-group">
+          <strong>Automation</strong>
+          <p class="chips">
+            <span *ngFor="let s of skills.automation" class="chip">{{ s }}</span>
+          </p>
+        </div>
+
+        <div class="skill-group">
+          <strong>Reporting</strong>
+          <p class="chips">
+            <span *ngFor="let s of skills.reporting" class="chip">{{ s }}</span>
+          </p>
+        </div>
+
+        <div class="skill-group">
+          <strong>Portals</strong>
+          <p class="chips">
+            <span *ngFor="let s of skills.portals" class="chip">{{ s }}</span>
+          </p>
+        </div>
+      </aside>
+    </section>
+  </div>
+</section>
+
+<ng-template #loadingTpl>
+  <div class="loading-center">Loading profile…</div>
+</ng-template>

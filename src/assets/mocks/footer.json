@@ -1,0 +1,42 @@
+{
+  "brandName": "Compliance Wallah",
+  "brief": "Payroll & Compliance Specialist with 14+ years of experience.",
+  "links": [
+    {
+      "title": "Portfolio",
+      "items": [
+        { "label": "Home", "path": "/", "external": false },
+        { "label": "About", "path": "/about", "external": false },
+        { "label": "Experience", "path": "/experience", "external": false },
+        { "label": "Projects", "path": "/projects", "external": false },
+        { "label": "Contact", "path": "/contact", "external": false }
+      ]
+    },
+    {
+      "title": "Resources",
+      "items": [
+        { "label": "Resume", "path": "/assets/resume.pdf", "external": true },
+        { "label": "Blog", "path": "https://medium.com", "external": true },
+        { "label": "LinkedIn", "path": "https://linkedin.com/in/rahulkumar", "external": true }
+      ]
+    },
+    {
+      "title": "Help",
+      "items": [
+        { "label": "Privacy Policy", "path": "/privacy", "external": false },
+        { "label": "Terms & Conditions", "path": "/terms", "external": false }
+      ]
+    }
+  ],
+  "contact": {
+    "email": "rahul.kumar@example.com",
+    "phone": "+91-99999-99999",
+    "location": "Pune, Maharashtra"
+  },
+  "social": {
+    "linkedin": "https://linkedin.com/in/rahulkumar",
+    "github": "https://github.com/rahulkumar",
+    "twitter": "https://twitter.com/rahulkumar"
+  },
+  "copyright": "© 2025 Rahul Kumar. All rights reserved."
+}

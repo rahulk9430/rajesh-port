@@ -1,0 +1,18 @@
+[
+  {
+    "id": "p1",
+    "title": "Payroll Automation - Reconciliation",
+    "summary": "Automated the monthly payroll reconciliation using Excel VBA and Power Automate.",
+    "impact": "Reduced processing time by ~40% and eliminated manual errors.",
+    "technologies": ["Excel VBA","Power Automate"],
+    "year": 2023
+  },
+  {
+    "id": "p2",
+    "title": "Statutory Audit Readiness",
+    "summary": "Prepared statutory audit packs across 4 states and coordinated with government authorities.",
+    "impact": "Zero penalties for 2 consecutive years.",
+    "technologies": ["EPFO Portal","ESIC Portal"],
+    "year": 2024
+  }
+]

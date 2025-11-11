@@ -1,0 +1,75 @@
+<section class="contact-page">
+  <div class="contact-wrap">
+    <h1>Contact Me</h1>
+    <p class="lead">Want to discuss payroll automation, compliance, or a project? Drop a message — I'll reply quickly.</p>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate class="contact-form" aria-labelledby="contact-heading">
+      <div class="row">
+        <label class="field">
+          <span class="label-text">Full name</span>
+          <input formControlName="name" type="text" placeholder="Your name" [class.invalid]="f.name.touched && f.name.invalid" />
+          <small class="error" *ngIf="f.name.touched && f.name.errors">
+            <span *ngIf="f.name.errors['required']">Name is required.</span>
+            <span *ngIf="f.name.errors['minlength']">Enter at least 2 characters.</span>
+          </small>
+        </label>
+
+        <label class="field">
+          <span class="label-text">Email</span>
+          <input formControlName="email" type="email" placeholder="you@example.com" [class.invalid]="f.email.touched && f.email.invalid" />
+          <small class="error" *ngIf="f.email.touched && f.email.errors">
+            <span *ngIf="f.email.errors['required']">Email is required.</span>
+            <span *ngIf="f.email.errors['email']">Enter a valid email.</span>
+          </small>
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="field">
+          <span class="label-text">Phone (optional)</span>
+          <input formControlName="phone" type="tel" placeholder="+91 98765 43210" [class.invalid]="f.phone.touched && f.phone.invalid" />
+          <small class="error" *ngIf="f.phone.touched && f.phone.errors">
+            <span *ngIf="f.phone.errors['pattern']">Enter a valid phone number.</span>
+          </small>
+        </label>
+
+        <label class="field">
+          <span class="label-text">Subject</span>
+          <input formControlName="subject" type="text" placeholder="What is this about?" [class.invalid]="f.subject.touched && f.subject.invalid" />
+          <small class="error" *ngIf="f.subject.touched && f.subject.errors">
+            <span *ngIf="f.subject.errors['required']">Subject required.</span>
+            <span *ngIf="f.subject.errors['minlength']">Use 3+ characters.</span>
+          </small>
+        </label>
+      </div>
+
+      <label class="field field-full">
+        <span class="label-text">Message</span>
+        <textarea formControlName="message" rows="6" placeholder="Write your message..." [class.invalid]="f.message.touched && f.message.invalid"></textarea>
+        <small class="error" *ngIf="f.message.touched && f.message.errors">
+          <span *ngIf="f.message.errors['required']">Message required.</span>
+          <span *ngIf="f.message.errors['minlength']">Minimum 10 characters.</span>
+        </small>
+      </label>
+
+      <div class="actions-row">
+        <button type="submit" class="btn btn-primary" [disabled]="sending">
+          <span *ngIf="!sending">Send Message</span>
+          <span *ngIf="sending">Sending…</span>
+        </button>
+
+        <button type="button" class="btn btn-ghost" (click)="resetForm()" [disabled]="sending">Reset</button>
+
+        <div class="mail-fallback">
+          <small>Or</small>
+          <a class="link-mail" href="mailto:rahulkumar.hr@gmail.com">Send via email</a>
+        </div>
+      </div>
+
+      <div class="status">
+        <div class="success" *ngIf="successMsg">{{ successMsg }}</div>
+        <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+      </div>
+    </form>
+  </div>
+</section>

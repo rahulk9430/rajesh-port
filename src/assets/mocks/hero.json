@@ -1,0 +1,18 @@
+{
+  "name": "Rahul Kumar",
+  "role": "Payroll & Compliance Specialist",
+  "headline": "Payroll | Statutory Compliance | Automation",
+  "subtitle": "Managing payroll for 7000+ employees and ensuring 100% statutory compliance across multiple states.",
+  "resumeUrl": "/assets/resume.pdf",
+  "image": "/assets/images/rahul.jpg",
+  "social": {
+    "linkedin": "https://linkedin.com/in/rahulkumar",
+    "github": "https://github.com/rahulkumar",
+    "twitter": "https://twitter.com/rahulkumar"
+  },
+  "metrics": [
+    { "label": "Years Experience", "value": "14+" },
+    { "label": "Employees Managed", "value": "7000+" },
+    { "label": "Compliance", "value": "100%" }
+  ]
+}

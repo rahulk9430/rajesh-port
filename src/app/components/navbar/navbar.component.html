@@ -1,0 +1,43 @@
+<nav class="nav" role="navigation" aria-label="Main Navigation">
+  <div class="nav__container">
+    <a class="nav__brand" routerLink="/" (click)="closeMenu()" title="Home">
+      <div class="nav__logo" aria-hidden="true">RK</div>
+      <div class="nav__meta">
+        <div class="nav__name">Rahul Kumar</div>
+        <div class="nav__role">Payroll & Compliance</div>
+      </div>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav__links" role="menubar" [attr.aria-hidden]="menuOpen ? 'true' : 'false'">
+      <li><a role="menuitem" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+      <li><a role="menuitem" routerLink="/service" routerLinkActive="active">Services</a></li>
+            <li><a role="menuitem" routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a role="menuitem" routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    </ul>
+
+
+  </div>
+
+  <!-- Mobile menu: render only when open (so nothing blocks desktop links) -->
+  <ng-container *ngIf="menuOpen">
+    <div id="mobile-menu" class="mobile open" role="dialog" aria-modal="true" aria-hidden="false">
+      <div class="mobile__inner">
+        <ul class="mobile__links" role="menu">
+          <li><a role="menuitem" routerLink="/" (click)="closeMenu()">Home</a></li>
+          <li><a role="menuitem" routerLink="/service" (click)="closeMenu()">Services</a></li>
+          <li><a role="menuitem" routerLink="/about" (click)="closeMenu()">About</a></li>
+          <li><a role="menuitem" routerLink="/contact" (click)="closeMenu()">Contact</a></li>
+        </ul>
+
+        <div class="mobile__cta">
+          <a class="btn btn--resume" href="/assets/resume.pdf" target="_blank" (click)="closeMenu()">Download Resume</a>
+        </div>
+
+        <button class="mobile__close" (click)="closeMenu()" aria-label="Close menu">Close</button>
+      </div>
+
+      <div class="mobile__backdrop" (click)="closeMenu()" tabindex="-1" aria-hidden="true"></div>
+    </div>
+  </ng-container>
+</nav>

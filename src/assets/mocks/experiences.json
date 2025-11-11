@@ -1,0 +1,26 @@
+[
+  {
+    "company": "ABC Tech Pvt Ltd",
+    "role": "Sr. Payroll & Compliance Specialist",
+    "start": "2018-06",
+    "end": "Present",
+    "location": "Mumbai",
+    "details": [
+      "Manage payroll for 4,000+ employees across Maharashtra & Karnataka.",
+      "Coordinate statutory audits and vendor reconciliations."
+    ],
+    "statesHandled": ["Maharashtra","Karnataka"]
+  },
+  {
+    "company": "XYZ Solutions",
+    "role": "Payroll Analyst",
+    "start": "2012-03",
+    "end": "2018-05",
+    "location": "Noida",
+    "details": [
+      "Handled EPFO, ESIC filings for multiple clients.",
+      "Built Excel VBA tools to automate reconciliations."
+    ],
+    "statesHandled": ["Uttar Pradesh","Tamil Nadu"]
+  }
+]

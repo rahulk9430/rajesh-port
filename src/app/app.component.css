@@ -1,0 +1,27 @@
+:host, :root, html, body {
+  height: 100%;
+  margin: 0;
+}
+
+:host { display: block; }
+
+app-root {
+  display: block;
+  min-height: 100vh;
+}
+
+/* layout */
+.app-main {
+  max-width: 1100px;
+  margin: 1.25rem auto;
+  padding: 0 1rem;
+  flex: 1 0 auto;
+  display: block;
+}
+
+/* make root element a column flex so footer stays at bottom */
+body > app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

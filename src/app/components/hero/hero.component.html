@@ -1,0 +1,66 @@
+<section class="hero" *ngIf="!loading && data as d; else loadingTpl" aria-labelledby="hero-heading">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="brand">
+        <div class="logo">RK</div>
+        <div class="meta">
+          <div class="name">{{ d.name }}</div>
+          <div class="role">{{ d.role }}</div>
+        </div>
+      </div>
+
+      <h1 id="hero-heading" class="headline">
+        {{ d.headline }}
+      </h1>
+
+      <p class="subtitle" aria-live="polite">{{ subtitleTyped || d.subtitle }}</p>
+
+      <div class="ctas">
+        <button class="btn btn-primary" (click)="goToContact()">Contact Me</button>
+        <a class="btn btn-outline" [href]="d.resumeUrl" target="_blank" rel="noopener">Download Resume</a>
+      </div>
+
+      <div class="metrics" aria-hidden="true">
+        <div class="metric" *ngFor="let m of metrics">
+          <div class="value">{{ m.value }}</div>
+          <div class="label">{{ m.label }}</div>
+        </div>
+      </div>
+
+      <div class="socials" *ngIf="d.social">
+        <a *ngIf="d.social?.linkedin" [href]="d.social.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        <a *ngIf="d.social?.github" [href]="d.social.github" target="_blank" rel="noopener">GitHub</a>
+        <a *ngIf="d.social?.twitter" [href]="d.social.twitter" target="_blank" rel="noopener">Twitter</a>
+      </div>
+    </div>
+
+    <div class="hero-right" aria-hidden="true">
+      <div class="portrait" *ngIf="d.image; else noImage">
+        <img [src]="d.image" alt="{{ d.name }} portrait" loading="lazy" />
+      </div>
+      <ng-template #noImage>
+        <div class="portrait">
+          <div class="photo-placeholder">RK</div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <button class="scroll-indicator" (click)="scrollDown()" aria-label="Scroll down">
+    <span class="dot"></span>
+    <span class="label">Scroll</span>
+  </button>
+</section>
+
+<ng-template #loadingTpl>
+  <section class="hero hero--loading">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <h1 class="headline">Rahul Kumar</h1>
+        <p class="subtitle">Payroll & Compliance Specialist</p>
+      </div>
+    </div>
+  </section>
+</ng-template>

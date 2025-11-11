@@ -1,0 +1,44 @@
+<section class="services-page" *ngIf="!loading; else loadingTpl">
+  <div class="services-wrap">
+    <header class="services-head">
+      <div>
+        <h1>Services I Offer</h1>
+        <p class="lead">Comprehensive payroll & compliance services, automation and audits — tailored for Indian regulations across multiple states.</p>
+      </div>
+
+      <div class="controls">
+        <input type="search" placeholder="Search services or tags..." [(ngModel)]="query" aria-label="Search services" />
+      </div>
+    </header>
+
+    <div class="tags" *ngIf="services?.length">
+      <button class="tag" *ngFor="let t of (services | mapTags)" (click)="setTag(t)" [class.active]="activeTag === t">{{ t }}</button>
+      <button class="tag clear" *ngIf="activeTag" (click)="setTag('')">Clear</button>
+    </div>
+
+    <div class="grid">
+      <article class="card" *ngFor="let s of filtered()">
+        <div class="card-head">
+          <div class="icon" aria-hidden="true">{{ s.icon || '💼' }}</div>
+          <h3>{{ s.title }}</h3>
+        </div>
+
+        <p class="short">{{ s.short }}</p>
+        <p class="details" *ngIf="s.details">{{ s.details }}</p>
+
+        <div class="card-footer">
+          <div class="tags-mini">
+            <span class="chip" *ngFor="let tag of s.tags">{{ tag }}</span>
+          </div>
+          <button class="btn-cta" (click)="openContact(s)">{{ s.ctaLabel || 'Contact' }}</button>
+        </div>
+      </article>
+    </div>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+  </div>
+</section>
+
+<ng-template #loadingTpl>
+  <div class="loading">Loading services…</div>
+</ng-template>
