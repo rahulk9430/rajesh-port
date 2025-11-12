@@ -16,8 +16,10 @@ export class NavbarComponent {
   }
 
   get ariaExpanded(): string { return this.menuOpen ? 'true' : 'false'; }
-  toggleMenu(): void { this.menuOpen = !this.menuOpen; }
-  closeMenu(): void { this.menuOpen = false; }
+
+toggleMenu() { this.menuOpen = !this.menuOpen; }
+closeMenu() { this.menuOpen = false; }
+
 
   @HostListener('window:keydown.esc', ['$event'])
   onEsc(event: KeyboardEvent) {
