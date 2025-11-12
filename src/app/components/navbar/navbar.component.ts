@@ -1,6 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,20 +8,34 @@ import { filter } from 'rxjs/operators';
 })
 export class NavbarComponent {
   menuOpen = false;
-  constructor(private router: Router) {
-    this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
-      this.menuOpen = false;
-    });
+
+  constructor(private router: Router) {}
+
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen;
+    this.setBodyScroll(this.menuOpen);
   }
 
-  get ariaExpanded(): string { return this.menuOpen ? 'true' : 'false'; }
-
-toggleMenu() { this.menuOpen = !this.menuOpen; }
-closeMenu() { this.menuOpen = false; }
-
-
-  @HostListener('window:keydown.esc', ['$event'])
-  onEsc(event: KeyboardEvent) {
-    if (this.menuOpen) { this.menuOpen = false; event.stopPropagation(); }
+  closeMenu(): void {
+    this.menuOpen = false;
+    this.setBodyScroll(false);
   }
+
+  private setBodyScroll(disable: boolean) {
+    if (typeof document !== 'undefined') {
+      document.documentElement.style.overflow = disable ? 'hidden' : '';
+      document.body.style.overflow = disable ? 'hidden' : '';
+    }
+  }
+
+  // close on Escape
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscape(_event: KeyboardEvent) {
+    if (this.menuOpen) this.closeMenu();
+  }
+
+  // optionally close menu on navigation
+  // (uncomment if you want nav clicks to auto-close without click handlers on anchors)
+  // @HostListener('window:popstate')
+  // onRouteChange() { this.closeMenu(); }
 }

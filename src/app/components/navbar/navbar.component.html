@@ -8,65 +8,74 @@
       </div>
     </a>
 
-    <!-- Desktop links -->
-    <ul class="nav__links" role="menubar"
-      [attr.aria-hidden]="menuOpen ? 'true' : 'false'">
-      <li><a role="menuitem" routerLink="/" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact:true}">Home</a></li>
-      <li><a role="menuitem" routerLink="/service"
-          routerLinkActive="active">Services</a></li>
-      <li><a role="menuitem" routerLink="/about"
-          routerLinkActive="active">About</a></li>
-      <li><a role="menuitem" routerLink="/contact"
-          routerLinkActive="active">Contact</a></li>
+    <!-- desktop links -->
+    <ul class="nav__links" role="menubar" [attr.aria-hidden]="menuOpen ? 'true' : 'false'">
+      <li><a role="menuitem" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+      <li><a role="menuitem" routerLink="/service" routerLinkActive="active">Services</a></li>
+      <li><a role="menuitem" routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a role="menuitem" routerLink="/contact" routerLinkActive="active">Contact</a></li>
     </ul>
 
-    <!-- Actions: Resume + Hamburger (hamburger visible on small screens via CSS) -->
+    <!-- right actions (resume + hamburger) -->
     <div class="nav__actions">
+      <a class="btn btn--resume" href="/assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
 
+      <!-- hamburger (visible on small screens) -->
       <button
         class="nav__burger"
+        type="button"
         (click)="toggleMenu()"
         [attr.aria-expanded]="menuOpen"
         aria-controls="mobile-menu"
         aria-label="Toggle menu"
-        type="button">
-        <svg class="burger-icon" width="20" height="20" viewBox="0 0 24 24"
-          aria-hidden="true" focusable="false">
-          <path class="line top" d="M4 7h16" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round"></path>
-          <path class="line mid" d="M4 12h16" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round"></path>
-          <path class="line bot" d="M4 17h16" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round"></path>
+      >
+        <!-- menu icon -->
+        <svg *ngIf="!menuOpen" class="burger-icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path class="line" d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+
+        <!-- close icon -->
+        <svg *ngIf="menuOpen" class="close-icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
         </svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile menu: render only when open -->
-  <ng-container *ngIf="menuOpen">
-    <div id="mobile-menu" class="mobile open" role="dialog" aria-modal="true"
-      aria-hidden="false">
-      <div class="mobile__inner">
-        <ul class="mobile__links" role="menu">
-          <li><a role="menuitem" routerLink="/"
-              (click)="closeMenu()">Home</a></li>
-          <li><a role="menuitem" routerLink="/service"
-              (click)="closeMenu()">Services</a></li>
-          <li><a role="menuitem" routerLink="/about"
-              (click)="closeMenu()">About</a></li>
-          <li><a role="menuitem" routerLink="/contact"
-              (click)="closeMenu()">Contact</a></li>
-        </ul>
-
-
-        <button class="mobile__close" (click)="closeMenu()"
-          aria-label="Close menu">Close</button>
+ <!-- mobile menu panel -->
+<div
+  id="mobile-menu"
+  class="mobile"
+  [class.open]="menuOpen"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-hidden]="!menuOpen"
+  (keydown.escape)="closeMenu()"
+>
+  <div class="mobile__inner" (click)="$event.stopPropagation()">
+    <div class="mobile-brand">
+      <div class="logo">PM</div>
+      <div class="meta">
+        <div class="name">Payroll Mint</div>
+        <div class="role">Payroll &amp; Compliance</div>
       </div>
-
-      <div class="mobile__backdrop" (click)="closeMenu()" tabindex="-1"
-        aria-hidden="true"></div>
     </div>
-  </ng-container>
+
+    <ul class="mobile__links" role="menu">
+      <li><a role="menuitem" routerLink="/" (click)="closeMenu()">Home</a></li>
+      <li><a role="menuitem" routerLink="/service" (click)="closeMenu()">Services</a></li>
+      <li><a role="menuitem" routerLink="/about" (click)="closeMenu()">About</a></li>
+      <li><a role="menuitem" routerLink="/contact" (click)="closeMenu()">Contact</a></li>
+    </ul>
+
+    <div class="mobile__cta">
+      <a class="btn btn--resume" href="/assets/resume.pdf" target="_blank" (click)="closeMenu()">Download Resume</a>
+    </div>
+
+    <button class="mobile__close" (click)="closeMenu()" aria-label="Close menu">Close</button>
+  </div>
+
+  <div class="mobile__backdrop" (click)="closeMenu()" tabindex="-1" aria-hidden="true"></div>
+</div>
+
 </nav>
