@@ -34,8 +34,5 @@ export class NavbarComponent {
     if (this.menuOpen) this.closeMenu();
   }
 
-  // optionally close menu on navigation
-  // (uncomment if you want nav clicks to auto-close without click handlers on anchors)
-  // @HostListener('window:popstate')
-  // onRouteChange() { this.closeMenu(); }
+ 
 }

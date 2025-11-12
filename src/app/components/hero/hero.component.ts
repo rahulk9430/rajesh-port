@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from '../../core/data.service';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { HeroData } from 'src/app/models/hero.model';
+import { Component, OnInit, OnDestroy, HostListener, ElementRef } from '@angular/core';
+import { Subscription, timer } from 'rxjs';
+import { HeroData } from '../../models/hero.model';
+import { DataService } from 'src/app/core/data.service';
 
 @Component({
   selector: 'app-hero',
@@ -10,70 +9,111 @@ import { HeroData } from 'src/app/models/hero.model';
   styleUrls: ['./hero.component.css']
 })
 export class HeroComponent implements OnInit, OnDestroy {
-  data?: HeroData;
+  data: HeroData | null = null;
+  images: string[] = [];       // normalised images array used by template
+  current = 0;
   loading = true;
-  error = '';
+  private slideTimerSub: Subscription | null = null;
 
-  metrics = [
-    { label: 'Years Experience', value: '14+' },
-    { label: 'Employees Managed', value: '7000+' },
-    { label: 'Compliance', value: '100%' }
-  ];
+  // touch swipe
+  private touchStartX = 0;
+  private touchEndX = 0;
 
-  subtitleTyped = '';
-  private subtitleIndex = 0;
-  private typeTimer?: any;
-  private sub?: Subscription;
-
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(private dataService: DataService, private el: ElementRef<HTMLElement>) {}
 
   ngOnInit(): void {
-    this.sub = this.dataService.getHero().subscribe({
-      next: d => {
+    this.dataService.getHero().subscribe({
+      next: (d) => {
         this.data = d;
-        if (d?.subtitle) this.startTyping(d.subtitle);
-        if (d?.metrics && d.metrics.length) this.metrics = d.metrics;
         this.loading = false;
+
+        // normalize images: prefer d.images, fallback to single d.image
+        if (d) {
+          if (Array.isArray(d.images) && d.images.length > 0) {
+            this.images = d.images;
+          } else if (typeof d.image === 'string' && d.image.trim()) {
+            this.images = [d.image];
+          } else {
+            this.images = [];
+          }
+        }
+
+        if (this.images.length > 0) {
+          this.current = 0;
+          this.startAutoSlide();
+        }
       },
-      error: e => {
-        console.error('Hero load error', e);
-        this.error = 'Unable to load hero content';
+      error: (err) => {
+        console.error('Failed to load hero data', err);
         this.loading = false;
       }
     });
   }
 
   ngOnDestroy(): void {
-    clearInterval(this.typeTimer);
-    this.sub?.unsubscribe();
+    this.stopAutoSlide();
   }
 
-  startTyping(text: string) {
-    this.subtitleTyped = '';
-    this.subtitleIndex = 0;
-    clearInterval(this.typeTimer);
-    this.typeTimer = setInterval(() => {
-      this.subtitleIndex++;
-      this.subtitleTyped = text.slice(0, this.subtitleIndex);
-      if (this.subtitleIndex >= text.length) {
-        clearInterval(this.typeTimer);
-      }
-    }, 28);
+  private startAutoSlide(): void {
+    this.stopAutoSlide();
+    if (!this.images || this.images.length <= 1) return;
+    this.slideTimerSub = timer(3000, 3000).subscribe(() => this.next());
   }
 
-  goToContact(selected?: string) {
-    if (selected) {
-      this.router.navigate(['/contact'], { queryParams: { service: selected } });
-    } else {
-      this.router.navigate(['/contact']);
+  private stopAutoSlide(): void {
+    if (this.slideTimerSub) {
+      this.slideTimerSub.unsubscribe();
+      this.slideTimerSub = null;
     }
   }
 
-  // moved window usage into component method (avoids template error)
-  scrollDown(): void {
-    // guard for SSR/unusual envs:
-    if (typeof window !== 'undefined' && window?.scrollTo) {
-      window.scrollTo({ top: window.innerHeight - 80, behavior: 'smooth' });
+  next(): void {
+    if (!this.images?.length) return;
+    this.current = (this.current + 1) % this.images.length;
+  }
+
+  prev(): void {
+    if (!this.images?.length) return;
+    this.current = (this.current - 1 + this.images.length) % this.images.length;
+  }
+
+  goTo(index: number): void {
+    if (!this.images?.length) return;
+    this.current = Math.max(0, Math.min(index, this.images.length - 1));
+    this.startAutoSlide();
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onKeydown(e: KeyboardEvent) {
+    if (e.key === 'ArrowRight') {
+      this.next(); this.startAutoSlide();
+    } else if (e.key === 'ArrowLeft') {
+      this.prev(); this.startAutoSlide();
+    } else if (e.key === 'Escape') {
+      this.stopAutoSlide();
     }
+  }
+
+  onTouchStart(evt: TouchEvent) {
+    this.touchStartX = evt.touches?.[0]?.clientX ?? 0;
+    this.stopAutoSlide();
+  }
+
+  onTouchEnd(evt: TouchEvent) {
+    this.touchEndX = evt.changedTouches?.[0]?.clientX ?? 0;
+    const diff = this.touchStartX - this.touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) this.next();
+      else this.prev();
+    }
+    this.startAutoSlide();
+  }
+
+  onMouseEnter() { this.stopAutoSlide(); }
+  onMouseLeave() { this.startAutoSlide(); }
+
+  // helper: returns the subtitle from either field
+  get subtitle(): string | undefined {
+    return this.data?.subheadline ?? this.data?.subtitle;
   }
 }

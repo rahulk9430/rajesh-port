@@ -12,6 +12,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceComponent } from './components/service/service.component';
 import { MapTagsPipe } from './core/pipes/map-tags.pipe';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MapTagsPipe } from './core/pipes/map-tags.pipe';
     ContactComponent,
     ServiceComponent,
     MapTagsPipe,
+    HomeComponent,
 
   ],
   imports: [

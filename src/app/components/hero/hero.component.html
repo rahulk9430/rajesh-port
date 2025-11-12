@@ -1,66 +1,64 @@
-<section class="hero" *ngIf="!loading && data as d; else loadingTpl" aria-labelledby="hero-heading">
-  <div class="hero-overlay"></div>
+<section class="hero" *ngIf="!loading && data; else heroLoading" aria-label="Intro">
+  <div class="hero__wrap">
+    <div class="hero__left">
+      <div class="kicker">{{ data.name || 'Rahul Kumar' }}</div>
+      <h1 class="headline">{{ data.headline }}</h1>
+      <p class="sub" *ngIf="subtitle">{{ subtitle }}</p>
 
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="brand">
-        <div class="logo">PM</div>
-        <div class="meta">
-          <div class="name">{{ d.name }}</div>
-          <div class="role">{{ d.role }}</div>
-        </div>
-      </div>
-
-      <h1 id="hero-heading" class="headline">
-        {{ d.headline }}
-      </h1>
-
-      <p class="subtitle" aria-live="polite">{{ subtitleTyped || d.subtitle }}</p>
-
-      <div class="ctas">
-        <button class="btn btn-primary" (click)="goToContact()">Contact Me</button>
-        <a class="btn btn-outline" [href]="d.resumeUrl" target="_blank" rel="noopener">Download Resume</a>
-      </div>
-
-      <div class="metrics" aria-hidden="true">
-        <div class="metric" *ngFor="let m of metrics">
-          <div class="value">{{ m.value }}</div>
-          <div class="label">{{ m.label }}</div>
-        </div>
-      </div>
-
-      <div class="socials" *ngIf="d.social">
-        <a *ngIf="d.social?.linkedin" [href]="d.social.linkedin" target="_blank" rel="noopener">LinkedIn</a>
-        <a *ngIf="d.social?.github" [href]="d.social.github" target="_blank" rel="noopener">GitHub</a>
-        <a *ngIf="d.social?.twitter" [href]="d.social.twitter" target="_blank" rel="noopener">Twitter</a>
+      <div class="cta-row" *ngIf="data.ctas?.length">
+        <a *ngFor="let c of (data.ctas || [])"
+           class="btn"
+           [href]="c.href || '#'"
+           target="_blank"
+           rel="noopener">{{ c.label }}</a>
       </div>
     </div>
 
-    <div class="hero-right" aria-hidden="true">
-      <div class="portrait" *ngIf="d.image; else noImage">
-        <img [src]="d.image" alt="{{ d.name }} portrait" loading="lazy" />
-      </div>
-      <ng-template #noImage>
-        <div class="portrait">
-          <div class="photo-placeholder">RK</div>
+    <div class="hero__right"
+         (mouseenter)="onMouseEnter()"
+         (mouseleave)="onMouseLeave()"
+         (touchstart)="onTouchStart($event)"
+         (touchend)="onTouchEnd($event)">
+
+      <div class="slider" role="region" aria-roledescription="carousel" [attr.aria-live]="'polite'">
+        <div class="slides" [style.transform]="'translateX(' + (-current * 100) + '%)'" *ngIf="images.length > 0">
+          <ng-container *ngFor="let img of images; let i = index">
+            <figure class="slide" [attr.aria-hidden]="i !== current">
+              <img [src]="img" [alt]="(data.headline || '') + ' image ' + (i+1)" loading="lazy" />
+            </figure>
+          </ng-container>
         </div>
-      </ng-template>
+
+        <div class="slides" *ngIf="images.length === 0">
+          <figure class="slide">
+            <div class="placeholder">No hero images</div>
+          </figure>
+        </div>
+
+        <button class="nav prev" (click)="prev()" aria-label="Previous image" *ngIf="images.length > 1">‹</button>
+        <button class="nav next" (click)="next()" aria-label="Next image" *ngIf="images.length > 1">›</button>
+
+        <div class="dots" *ngIf="images.length > 1">
+          <button *ngFor="let _ of images; let idx = index"
+                  class="dot"
+                  [class.active]="idx === current"
+                  (click)="goTo(idx)"
+                  [attr.aria-label]="'Show image ' + (idx+1)"></button>
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <button class="scroll-indicator" (click)="scrollDown()" aria-label="Scroll down">
-    <span class="dot"></span>
-    <span class="label">Scroll</span>
-  </button>
 </section>
 
-<ng-template #loadingTpl>
+<ng-template #heroLoading>
   <section class="hero hero--loading">
-    <div class="hero-inner">
-      <div class="hero-left">
-        <h1 class="headline">Rahul Kumar</h1>
-        <p class="subtitle">Payroll & Compliance Specialist</p>
+    <div class="hero__wrap">
+      <div class="hero__left">
+        <div class="kicker">Loading…</div>
+        <h1 class="headline">Loading hero</h1>
       </div>
+      <div class="hero__right"></div>
     </div>
   </section>
 </ng-template>

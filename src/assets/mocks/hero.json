@@ -1,18 +1,16 @@
 {
-  "name": "Paytoll MInt",
-  "role": "Payroll & Compliance Specialist",
-  "headline": "Payroll | Statutory Compliance | Automation",
-  "subtitle": "Managing payroll for 7000+ employees and ensuring 100% statutory compliance across multiple states.",
-  "resumeUrl": "/assets/resume.pdf",
-  "image": "/assets/images/rahul.jpg",
-  "social": {
-    "linkedin": "https://linkedin.com/in/rahulkumar",
-    "github": "https://github.com/rahulkumar",
-    "twitter": "https://twitter.com/rahulkumar"
-  },
-  "metrics": [
-    { "label": "Years Experience", "value": "14+" },
-    { "label": "Employees Managed", "value": "7000+" },
-    { "label": "Compliance", "value": "100%" }
+  "name": "Payroll Mint",
+  "role": "Payroll & Compliance",
+  "headline": "Payroll & Compliance Specialist",
+  "subheadline": "14+ years in Indian payroll & statutory compliance — automating processes and ensuring 100% statutory adherence for large enterprises.",
+  "ctas": [
+    { "label": "Contact Me", "href": "/contact" },
+    { "label": "Download CV", "href": "/assets/resume.pdf" }
+  ],
+  "images": [
+    "assets/images/img1.jpg",
+    "assets/images/img2.jpg",
+    "assets/images/img3.jpg",
+    "assets/images/img4.jpg"
   ]
 }
