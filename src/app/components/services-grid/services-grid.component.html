@@ -1,0 +1,41 @@
+<!-- states -->
+<section class="svcCards" *ngIf="loading"><div class="svcCards__wrap"><p>Loading…</p></div></section>
+<section class="svcCards" *ngIf="!loading && error"><div class="svcCards__wrap"><p>Failed to load.</p></div></section>
+
+<!-- main -->
+<section class="svcCards" *ngIf="!loading && data as d" aria-labelledby="svcCards-title">
+  <div class="svcCards__wrap">
+    <header class="svcCards__head">
+      <h2 id="svcCards-title" class="svcCards__title">{{ d.heading }}</h2>
+      <p class="svcCards__sub" *ngIf="d.subheading">{{ d.subheading }}</p>
+
+      <div class="svcCards__search">
+        <input #q
+               type="search"
+               [value]="query"
+               (input)="onSearch(q.value)"
+               placeholder="Search services or tags..."
+               aria-label="Search services" />
+      </div>
+    </header>
+
+    <div class="svcCards__grid" role="list">
+      <article class="card"
+               *ngFor="let s of filtered"
+               role="listitem"
+               tabindex="0">
+        <div class="card__icon" aria-hidden="true">{{ s.icon }}</div>
+        <h3 class="card__title">{{ s.title }}</h3>
+        <p class="card__summary">{{ s.summary }}</p>
+        <p class="card__details">{{ s.details }}</p>
+
+        <ul class="card__tags">
+          <li class="tag" *ngFor="let t of s.tags">{{ t }}</li>
+        </ul>
+
+        <a class="card__cta" [href]="s.ctaHref">{{ s.ctaText }}</a>
+        <div class="card__glow" aria-hidden="true"></div>
+      </article>
+    </div>
+  </div>
+</section>

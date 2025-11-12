@@ -1,0 +1,28 @@
+<!-- Loading / Error states -->
+<section *ngIf="loading" class="svc"><div class="svc__wrap"><p>Loading…</p></div></section>
+<section *ngIf="!loading && error" class="svc"><div class="svc__wrap"><p>Failed to load.</p></div></section>
+
+<!-- Main content -->
+<section class="svc" *ngIf="!loading && data as d" aria-labelledby="svc-title">
+  <div class="svc__wrap">
+    <!-- LEFT -->
+    <div class="svc__left">
+      <div class="svc__kicker" *ngIf="d.kicker">{{ d.kicker }}</div>
+      <h2 id="svc-title" class="svc__title">{{ d.title }}</h2>
+
+      <div class="svc__body">
+        <p *ngFor="let p of paragraphs">{{ p }}</p>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <aside class="svc__right" aria-label="Related image">
+      <figure class="svc__card">
+        <img [src]="d.imageUrl || ''"
+             [alt]="d.imageAlt || d.title || 'Service image'"
+             loading="lazy" />
+        <div class="svc__scrim"></div>
+      </figure>
+    </aside>
+  </div>
+</section>

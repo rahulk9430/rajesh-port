@@ -1,0 +1,62 @@
+<!-- states -->
+<section class="tms" *ngIf="loading">
+    <div class="tms__wrap">
+        <p>Loading testimonials…</p>
+    </div>
+</section>
+<section class="tms" *ngIf="!loading && error">
+    <div class="tms__wrap">
+        <p>Failed to load testimonials.</p>
+    </div>
+</section>
+
+<!-- main -->
+<section class="tms" *ngIf="!loading && data as d" aria-labelledby="tms-title">
+    <div class="tms__wrap" (mouseenter)="stop()" (mouseleave)="start()" (touchstart)="onTouchStart($event)"
+        (touchend)="onTouchEnd($event)">
+
+        <header class="tms__head">
+            <h2 id="tms-title" class="tms__title">{{ d.heading }}</h2>
+            <p class="tms__sub" *ngIf="d.subheading">{{ d.subheading }}</p>
+        </header>
+
+        <div class="tms__viewport" role="region" aria-roledescription="carousel" aria-live="polite">
+            <div class="tms__slides" [style.transform]="'translateX(' + (-idx * 100) + '%)'">
+                <article class="tms__card" *ngFor="let t of d.items; let i = index; trackBy: trackByIndex"
+                    [attr.aria-hidden]="i !== idx">
+                    <div class="tms__cardInner">
+                        <div class="tms__row">
+                            <div class="tms__person">
+                                <img *ngIf="t.avatar" class="tms__avatar" [src]="t.avatar" [alt]="t.name" />
+                                <div class="tms__who">
+                                    <div class="tms__name">{{ t.name }}</div>
+                                    <div class="tms__role" *ngIf="t.role">{{ t.role }}</div>
+                                    <div class="tms__stars" [attr.aria-label]="(t.rating || 0) + ' out of 5'">
+                                        <span class="tms__star" *ngFor="let s of stars(t.rating)">{{ s ? '★' : '☆'
+                                            }}</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <img *ngIf="t.logo" class="tms__logo" [src]="t.logo" alt="" aria-hidden="true" />
+                        </div>
+
+                        <blockquote class="tms__quote">“{{ t.quote }}”</blockquote>
+                    </div>
+                    <div class="tms__glow" aria-hidden="true"></div>
+                </article>
+            </div>
+
+            <!-- controls -->
+            <button class="tms__nav tms__prev" (click)="prev()" aria-label="Previous">‹</button>
+            <button class="tms__nav tms__next" (click)="next()" aria-label="Next">›</button>
+
+            <!-- dots -->
+            <div class="tms__dots" *ngIf="d.items.length > 1">
+                <button class="tms__dot" *ngFor="let _ of d.items; let i = index" [class.active]="i === idx"
+                    (click)="go(i)" [attr.aria-label]="'Go to testimonial ' + (i+1)"></button>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -7,8 +7,9 @@ import { Experience } from '../models/experience.model';
 import { Project } from '../models/project.model';
 import { Contact } from '../models/contact.model';
 import { FooterData } from '../models/footer.model';
-import { ServiceItem } from '../models/service.model';
+import { FunFactsData, ServiceItem, ServicesItem, ServicesPayload } from '../models/service.model';
 import { HeroData } from '../models/hero.model';
+import { TestimonialsData } from '../models/testimonial.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,23 @@ getHero(): Observable<HeroData> {
   return this.http.get<HeroData>(`${this.base}/hero.json`);
 }
 
-  // if you prefer synchronous import (not HTTP) you could also export .ts mock files and import them directly
+
+getServiceIntro(): Observable<any> {
+  return this.http.get<any>(`${this.base}/service-intro.json`);
+}
+
+getFunFacts(): Observable<FunFactsData> {
+  return this.http.get<any>(`${this.base}/fun-facts.json`); 
+}
+
+getIntroServices(): Observable<ServicesPayload> {
+  return this.http.get<ServicesPayload>(`${this.base}/intro-services.json`);  
+
+}
+
+
+getTestimonials(): Observable<TestimonialsData> {
+  return this.http.get<TestimonialsData>(`${this.base}/testimonials.json`);
+}
+
 }

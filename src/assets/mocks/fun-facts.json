@@ -1,0 +1,9 @@
+{
+  "kicker": "FUN FACTS",
+  "title": "Secure, Compliant and easy",
+  "items": [
+    { "value": 40, "suffix": "+", "label": "Years of", "sublabel": "Experience" },
+    { "value": 1500, "suffix": "+", "label": "Satisfied Clients Across All", "sublabel": "Domains" },
+    { "value": 180000, "suffix": "+", "label": "Payslips Processed per", "sublabel": "month" }
+  ]
+}

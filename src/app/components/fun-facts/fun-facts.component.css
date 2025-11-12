@@ -1,0 +1,86 @@
+:root{
+  --facts-maxw: 1200px;
+  --facts-muted: #6b7280;
+  --facts-bg: #f1f7fb;         /* very light bluish like screenshot */
+  --facts-accent: #ef4444;     /* red for numbers */
+  --facts-title: #071428;
+}
+
+/* section */
+.facts {
+  background: var(--facts-bg);
+  padding: clamp(1.6rem, 4vw, 3rem) 1rem;
+}
+
+.facts__wrap {
+  max-width: var(--facts-maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 2fr;   /* left title + right stats */
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+}
+
+/* left */
+.facts__dot {
+  width: 14px; height: 10px;
+  background: #0b5dbb; /* small blue pill like screenshot */
+  border-radius: 999px;
+  margin-bottom: .6rem;
+}
+.facts__kicker {
+  color: #0b5dbb;
+  font-weight: 800;
+  letter-spacing: .3px;
+  margin-bottom: .6rem;
+}
+.facts__title {
+  margin: 0;
+  color: var(--facts-title);
+  font-weight: 900;
+  line-height: 1.2;
+  font-size: clamp(1.6rem, 4.2vw, 2.4rem);
+  max-width: 22ch;
+}
+
+/* right grid */
+.facts__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+}
+
+/* each fact */
+.fact__value {
+  font-weight: 900;
+  display: flex;
+  align-items: baseline;
+  gap: .25rem;
+  margin-bottom: .4rem;
+}
+.fact__num {
+  color: var(--facts-accent);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  line-height: 1;
+}
+.fact__suffix {
+  color: var(--facts-accent);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  line-height: 1;
+}
+.fact__label {
+  color: var(--facts-muted);
+  font-size: clamp(0.95rem, 1.7vw, 1.05rem);
+  line-height: 1.5;
+}
+
+/* responsive */
+@media (max-width: 980px) {
+  .facts__wrap { grid-template-columns: 1fr; }
+  .facts__title { max-width: none; }
+  .facts__grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .facts__grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,30 @@
+{
+  "heading": "What clients say",
+  "subheading": "Real feedback from partners I’ve helped with payroll, compliance and automation.",
+  "items": [
+    {
+      "quote": "We moved payroll for 7 states with zero escalations. Reconciliation and filings are always on time.",
+      "name": "Anita Verma",
+      "role": "HR Head, NorthZone Retail",
+      "rating": 5,
+      "avatar": "assets/images/rahul.jpg",
+      "logo": "assets/logos/northzone.svg"
+    },
+    {
+      "quote": "Automations in Excel & Power Automate cut manual work by 60%. Dashboards are a lifesaver.",
+      "name": "Rohit Sinha",
+      "role": "Finance Lead, FinMatrix",
+      "rating": 5,
+      "avatar": "assets/images/rahul.jpg",
+      "logo": "assets/logos/finmatrix.svg"
+    },
+    {
+      "quote": "PF/ESIC compliance is now audit-ready. The team handled inspections and documentation end-to-end.",
+      "name": "Sneha Kapoor",
+      "role": "People Ops, UrbanTech",
+      "rating": 4,
+      "avatar": "assets/images/rahul.jpg",
+      "logo": "assets/logos/urbantech.svg"
+    }
+  ]
+}

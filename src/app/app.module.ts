@@ -13,6 +13,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceComponent } from './components/service/service.component';
 import { MapTagsPipe } from './core/pipes/map-tags.pipe';
 import { HomeComponent } from './components/home/home.component';
+import { ServiceIntroComponent } from './components/service-intro/service-intro.component';
+import { FunFactsComponent } from './components/fun-facts/fun-facts.component';
+import { ServicesGridComponent } from './components/services-grid/services-grid.component';
+import { TestimonialCarouselComponent } from './components/testimonial-carousel/testimonial-carousel.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { HomeComponent } from './components/home/home.component';
     ServiceComponent,
     MapTagsPipe,
     HomeComponent,
+    ServiceIntroComponent,
+    FunFactsComponent,
+    ServicesGridComponent,
+    TestimonialCarouselComponent,
 
   ],
   imports: [

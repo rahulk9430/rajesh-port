@@ -1,0 +1,60 @@
+{
+  "heading": "Services I Offer",
+  "subheading": "Comprehensive payroll & compliance services, automation and audits — tailored for Indian regulations across multiple states.",
+  "services": [
+    {
+      "icon": "🧾",
+      "title": "End-to-End Payroll Processing",
+      "summary": "Monthly & annual payroll processing with tax and payslips.",
+      "details": "Attendance, salary calc, TDS, reimbursements, adjustments and reconciliation. Multi-state & multi-company.",
+      "tags": ["Payroll", "Salary", "Reconciliation"],
+      "ctaText": "Request Payroll",
+      "ctaHref": "#payroll"
+    },
+    {
+      "icon": "✅",
+      "title": "Statutory Compliance & Filings",
+      "summary": "PF, ESIC, Bonus, Gratuity, LWF filings & records.",
+      "details": "Registrations, returns, audits, and coordination with EPFO/ESIC/NPS portals.",
+      "tags": ["PF", "ESIC", "Bonus"],
+      "ctaText": "Get Compliance Help",
+      "ctaHref": "#compliance"
+    },
+    {
+      "icon": "🤖",
+      "title": "Payroll Automation & Reporting",
+      "summary": "Automations using Excel VBA & Power Automate + dashboards.",
+      "details": "Macros, flows, reporting templates, Excel dashboards & scheduled reports.",
+      "tags": ["VBA", "Power Automate", "Dashboards"],
+      "ctaText": "Automate Payroll",
+      "ctaHref": "#automation"
+    },
+    {
+      "icon": "🧰",
+      "title": "Vendor & Statutory Audits",
+      "summary": "Vendor audits, statutory audits & inspections support.",
+      "details": "Prep documents, reconcile findings & corrective actions. CLRA, Maternity Act, S&E rules.",
+      "tags": ["Audits", "CLRA", "Maternity Act"],
+      "ctaText": "Audit Support",
+      "ctaHref": "#audits"
+    },
+    {
+      "icon": "🎁",
+      "title": "Employee Benefits & Gratuity",
+      "summary": "Benefits admin: food coupons, gratuity, leave encashment.",
+      "details": "Vendor coordination, claims, and gratuity administration.",
+      "tags": ["Benefits", "Gratuity", "Food Coupons"],
+      "ctaText": "Benefits Support",
+      "ctaHref": "#benefits"
+    },
+    {
+      "icon": "🌐",
+      "title": "Portal Expertise (EPFO, NPS, Ascent)",
+      "summary": "Hands-on with EPFO, ESIC, NPS CRA & Ascent portals.",
+      "details": "Registrations, eKYC, contribution reconciliation, portal filings.",
+      "tags": ["EPFO", "NPS", "Ascent"],
+      "ctaText": "Portal Help",
+      "ctaHref": "#portals"
+    }
+  ]
+}

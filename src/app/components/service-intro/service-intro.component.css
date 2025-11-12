@@ -1,0 +1,88 @@
+:root{
+  --svc-maxw: 1200px;
+  --svc-muted: #64748b;
+}
+
+/* section container */
+.svc {
+  padding: clamp(1.5rem, 4vw, 3rem) 1rem;
+}
+
+.svc__wrap {
+  max-width: var(--svc-maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 560px;      /* left text + right image */
+  gap: clamp(1.2rem, 3vw, 2rem);
+  align-items: start;
+}
+
+/* left text */
+.svc__kicker {
+  color: var(--svc-muted);
+  font-weight: 800;
+  letter-spacing: .3px;
+  margin-bottom: .5rem;
+  text-transform: uppercase;
+}
+
+.svc__title {
+  margin: 0 0 .75rem 0;
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  line-height: 1.1;
+  font-weight: 900;
+  color: #071428;
+}
+
+.svc__body p {
+  color: #334155;
+  font-size: clamp(1rem, 1.6vw, 1.075rem);
+  line-height: 1.75;
+  margin: 0 0 1rem 0;
+  max-width: 65ch;
+}
+
+/* right image card */
+.svc__right { position: relative; }
+
+.svc__card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 22px 44px rgba(2,6,23,0.10);
+  background: #0b1220;
+  isolation: isolate;
+}
+
+.svc__card img {
+  width: 100%;
+  height: clamp(320px, 52vh, 560px);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 0.92;                 /* हल्का dim जैसा screenshot */
+}
+
+/* very subtle dark scrim at bottom */
+.svc__scrim {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(2,6,23,0.25));
+  pointer-events: none;
+}
+
+/* responsive */
+@media (max-width: 1024px) {
+  .svc__wrap { grid-template-columns: 1fr 480px; }
+}
+
+@media (max-width: 900px) {
+  .svc__wrap {
+    grid-template-columns: 1fr;
+  }
+  .svc__right { order: 2; }
+  .svc__card img {
+    height: clamp(260px, 40vh, 420px);
+  }
+}

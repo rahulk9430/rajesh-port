@@ -1,129 +1,152 @@
 :root{
   --accent: #0ea5a9;
   --muted: #64748b;
-  --maxw: 1100px;
+  --maxw: 1200px;
 }
 
-/* outer */
+/* ====== OUTER ====== */
 .hero {
-  padding: clamp(1rem, 4vw, 3rem) 1rem;
+  padding: clamp(1rem, 3.2vw, 2.5rem) 1rem;
   background: linear-gradient(180deg, rgba(14,165,169,0.03), transparent);
 }
 
-/* 👉 height जोड़ा गया ताकि right-side image landscape/full दिखाई दे */
 .hero__wrap {
   max-width: var(--maxw);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 520px;
+  grid-template-columns: 1fr 600px;     /* right image wide like sample */
   gap: clamp(1rem, 3vw, 2rem);
   align-items: center;
 
-  /* NEW: hero को बड़ा landscape feel दें */
-  height: 75vh;
-  max-height: 700px;
+  /* tall like the screenshot */
+  height: clamp(480px, 72vh, 660px);
 }
 
-/* left text */
-.hero__left .kicker { color: var(--muted); font-weight:700; margin-bottom:0.6rem; }
-.headline { font-size: clamp(1.6rem, 4.2vw, 2.8rem); margin: 0 0 0.6rem 0; line-height:1.05; font-weight:800; color:#071428; }
-.sub { color: #334155; font-size: clamp(0.95rem, 1.6vw, 1.05rem); max-width: 56ch; }
+/* ====== LEFT (TEXT) ====== */
+.hero__left .kicker {
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.2px;
+}
 
-/* CTAs */
-.cta-row { margin-top: 1rem; display:flex; gap:0.6rem; flex-wrap:wrap; }
-.btn { background: var(--accent); color:#02121a; padding:0.6rem 0.9rem; border-radius:8px; font-weight:700; text-decoration:none; }
+.headline {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+  color: #071428;
+}
 
-/* slider area */
+.sub {
+  color: #334155;
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
+  max-width: 48ch;
+}
+
+/* CTA pill like screenshot */
+.cta-row { margin-top: 1.2rem; display:flex; gap:0.7rem; flex-wrap:wrap; }
+.btn {
+  background: var(--accent);
+  color:#02121a;
+  padding:0.85rem 1.3rem;
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.btn--pill {
+  background: linear-gradient(135deg, #ef4444, #f43f5e); /* red pill */
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.95rem 1.6rem;
+  letter-spacing: .3px;
+}
+
+/* ====== RIGHT (IMAGE SLIDER) ====== */
+.hero__right { height: 100%; }
+
 .slider {
   position: relative;
   overflow: hidden;
-  border-radius:12px;
-  box-shadow: 0 18px 36px rgba(2,6,23,0.08);
-  background: #fff;
-
-  /* NEW: container full height */
   height: 100%;
+  border-radius: 24px;                         /* soft card look */
+  box-shadow: 0 22px 44px rgba(2,6,23,0.10);
+  background: #fff;
 }
 
 .slides {
-  display:flex;
+  display: flex;
   transition: transform 0.9s cubic-bezier(.2,.9,.2,1);
   width: 100%;
-  /* NEW: full height */
   height: 100%;
 }
 
 .slide {
-  min-width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:0.6rem;
-  /* NEW: full height */
+  min-width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
   height: 100%;
 }
 
-/* 👉 KEY CHANGE: image अब available area को पूरी तरह fill करेगी */
+/* Full container, focus right side like sample photo  */
 .slide img {
-  width:100%;
-  height:100%;           /* पहले fixed px था; अब full container height */
-  object-fit:cover;      /* fill without distortion */
-  border-radius:10px;
-  display:block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;               /* fill without distortion */
+  object-position: 70% center;     /* bias to right, tweak 60–80% */
+  display: block;
 }
 
-/* nav arrows */
+/* Controls (hidden on small screens) */
 .nav {
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  background: rgba(2,6,23,0.06);
+  background: rgba(2,6,23,0.08);
   border:none;
-  padding:0.5rem 0.7rem;
-  border-radius:10px;
+  padding:0.55rem 0.75rem;
+  border-radius:12px;
   font-size:1.4rem;
   cursor:pointer;
+  backdrop-filter: blur(2px);
 }
 .nav.prev { left:12px; }
 .nav.next { right:12px; }
 .nav:focus { outline:2px solid var(--accent); }
+@media (max-width: 900px) {
+  .nav { display: none; }
+}
 
 /* dots */
 .dots {
   position:absolute;
-  bottom:10px;
+  bottom:12px;
   left:50%;
   transform:translateX(-50%);
   display:flex;
   gap:0.45rem;
 }
-.dot { width:9px; height:9px; border-radius:50%; background: rgba(2,6,23,0.12); border:none; }
+.dot { width:9px; height:9px; border-radius:50%; background: rgba(2,6,23,0.18); border:none; }
 .dot.active { background: var(--accent); }
 
-/* responsive */
-/* on small screens stack layout and keep reasonable height */
-@media (max-width: 900px) {
+/* ====== RESPONSIVE ====== */
+@media (max-width: 1180px) {
   .hero__wrap {
-    grid-template-columns: 1fr;
-    height: auto;        /* mobile पर auto */
-    max-height: none;
-  }
-
-  .hero__right { order: -1; }
-
-  /* मोबाइल पर image की fixed ऊँचाई ताकि layout अच्छा रहे */
-  .slider,
-  .slides,
-  .slide { height: auto; }
-
-  .slide img {
-    height: 280px;       /* mobile friendly */
+    grid-template-columns: 1fr 520px;
   }
 }
 
-/* very small phones */
+@media (max-width: 980px) {
+  .hero__wrap {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .hero__right { order: -1; }        /* image on top, text below */
+  .slider { height: clamp(260px, 45vh, 420px); }
+}
+
 @media (max-width: 420px) {
-  .slide img { height: 200px; }
-  .nav { padding:0.35rem 0.5rem; font-size:1.1rem; }
-  .hero { padding-top: 1rem; padding-bottom: 1rem; }
+  .btn--pill { padding: 0.85rem 1.2rem; }
+  .headline { font-size: clamp(1.8rem, 8vw, 2.2rem); }
 }
